@@ -11,9 +11,9 @@ namespace CarShop.Models
         [Key]
         public int Id { get; private set; }
 
-        public Announcement Announcement { get; private set; }
+        public Announcement Announcement { get; set; }
 
-        public Account Account { get; private set; }
+        public Account Account { get; set; }
 
         public Basket()
         {

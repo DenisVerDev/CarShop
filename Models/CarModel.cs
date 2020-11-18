@@ -14,5 +14,10 @@ namespace CarShop.Models
         public CarBrand CarBrand { get; private set; }
 
         public string ModelName { get; private set; }
+
+        public CarModel()
+        {
+
+        }
     }
 }

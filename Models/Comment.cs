@@ -11,7 +11,7 @@ namespace CarShop.Models
         [Key]
         public int Id { get; private set; }
 
-        public Announcement Announcement { get; private set; }
+        public Announcement Announcement { get; set; }
 
         [Required(ErrorMessage = "This field must be filled")]
         [Display(Name ="Comment text")]
@@ -19,7 +19,7 @@ namespace CarShop.Models
         [DataType(DataType.MultilineText)]
         public string CommentText { get; set; }
 
-        public Account Commentator { get; private set; }
+        public Account Commentator { get; set; }
 
 
         public Comment()

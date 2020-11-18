@@ -12,7 +12,7 @@ namespace CarShop.Models
         public int Id { get; private set; }
 
         [Display(Name ="Car's engine type")]
-        public string EngineType { get; set; }
+        public string EngineType { get; private set; }
 
         public CarEngineType()
         {

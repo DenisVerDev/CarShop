@@ -43,7 +43,7 @@ namespace CarShop.Models
 
         [Required(ErrorMessage = "This field must be filled")]
         [Display(Name = "Car's price")]
-        [DataType(DataType.Currency,ErrorMessage ="You should enter currency")]
+        [DataType(DataType.Currency,ErrorMessage ="You should enter currency($)")]
         public double Price { get; set; }
 
         [Required(ErrorMessage = "This field must be filled")]

@@ -10,7 +10,7 @@ namespace CarShop.Models
     public class Account
     {
         [Key]
-        public int Id { get; set; }
+        public int Id { get; private set; }
 
         [Required(ErrorMessage ="This field must be filled")]
         [Display(Name ="Name", Description ="First name")]
@@ -20,12 +20,12 @@ namespace CarShop.Models
 
         [Display(Name="Surname")]
         [StringLength(25, ErrorMessage = "Surname's length should be less than 25 symbols")]
-        [DataType(DataType.Text, ErrorMessage = "Name must consist only letters")]
+        [DataType(DataType.Text, ErrorMessage = "Surname must consist only letters")]
         public string SecondName { get; set; }
 
         [Required(ErrorMessage = "This field must be filled")]
         [Display(Name = "Email", Description = "User's email address")]
-        [DataType(DataType.EmailAddress)]
+        [DataType(DataType.EmailAddress,ErrorMessage ="This should be your email address")]
         [EmailAddress]
         public string Email { get; set; }
 
@@ -36,7 +36,7 @@ namespace CarShop.Models
         public string Password { get; set; }
 
         [Required(ErrorMessage = "This field must be filled")]
-        [Display(Name = "Confirm Password", Description = "User's password")]
+        [Display(Name = "Confirm Password")]
         [StringLength(25, ErrorMessage = "Password's length should be less than 25 symbols")]
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Please, enter correct password")]
@@ -58,8 +58,13 @@ namespace CarShop.Models
         [Phone]
         public string PhoneNumber { get; set; }
 
-        [Display(Name = "User's phone number")]
+        [Display(Name = "User's rate")]
         [Range(0,5)]
         public double Rate { get; set; }
+
+        public Account()
+        {
+
+        }
     }
 }
