@@ -14,6 +14,12 @@
         $(this).attr("src", "Content/Images/btnlogin.svg");
     });
 
+    $('.btn-cart').hover(function () {
+        $(this).attr("src", "Content/Images/shopping-carthover.svg");
+    }, function () {
+        $(this).attr("src", "Content/Images/shopping-cart.svg");
+    });
+
 });
 
 function UpdateNav() {
