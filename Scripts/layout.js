@@ -7,17 +7,17 @@
     $(window).resize(function () {
         UpdateNav();
     });
-
+    
     $('.btn-cab').hover(function () {
-        $(this).attr("src","Content/Images/btnloginhover.svg");
+        $(this).attr("src","../Content/Images/btnloginhover.svg");
     }, function () {
-        $(this).attr("src", "Content/Images/btnlogin.svg");
+        $(this).attr("src","../Content/Images/btnlogin.svg");
     });
 
     $('.btn-cart').hover(function () {
-        $(this).attr("src", "Content/Images/shopping-carthover.svg");
+        $(this).attr("src", "../Content/Images/shopping-carthover.svg");
     }, function () {
-        $(this).attr("src", "Content/Images/shopping-cart.svg");
+        $(this).attr("src", "../Content/Images/shopping-cart.svg");
     });
 
 });
