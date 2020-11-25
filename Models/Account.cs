@@ -1,9 +1,11 @@
-﻿using System;
+﻿using CarShop.VerificationAttributes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace CarShop.Models
 {
@@ -13,7 +15,7 @@ namespace CarShop.Models
         public int Id { get; private set; }
 
         [Required(ErrorMessage ="This field must be filled")]
-        [Display(Name ="Name", Description ="First name")]
+        [Display(Name ="Name", Description = "Your first name or your company name")]
         [StringLength(25,ErrorMessage = "Name's length should be less than 25 symbols")]
         [DataType(DataType.Text,ErrorMessage ="Name must consist only letters")]
         public string FirstName { get; set; }
@@ -26,36 +28,37 @@ namespace CarShop.Models
         [Required(ErrorMessage = "This field must be filled")]
         [Display(Name = "Email", Description = "User's email address")]
         [DataType(DataType.EmailAddress,ErrorMessage ="This should be your email address")]
-        [EmailAddress]
+        [EmailAddress(ErrorMessage = "The Email field does not contain a valid email address")]
+        [EmailUniqueAttributes(ErrorMessage ="This email has already used")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "This field must be filled")]
         [Display(Name = "Password", Description = "User's password")]
-        [StringLength(25, ErrorMessage = "Password's length should be less than 25 symbols")]
+        [StringLength(25, MinimumLength =8, ErrorMessage = "Password's length should be 8-25 symbols")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "This field must be filled")]
         [Display(Name = "Confirm Password")]
-        [StringLength(25, ErrorMessage = "Password's length should be less than 25 symbols")]
         [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "Please, enter correct password")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Passwords do not match!")]
         [NotMapped]
         public string ConfirmPassword { get; set; }
 
-        [Display(Name="User last online")]
+        [Display(Name="Last online")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString ="{0:y-m-d}")]
         public DateTime LastOnline { get; set; }
 
         [Required(ErrorMessage = "This field must be filled")]
-        [Display(Name = "Is you a company")]
+        [Display(Name = "Is you a company?")]
         public bool IsCompany { get; set; }
 
-        [Required(ErrorMessage = "This field must be filled")]
-        [Display(Name = "User's phone number")]
-        [DataType(DataType.PhoneNumber)]
-        [Phone]
+        [Display(Name = "Your phone number")]
+        [DataType(DataType.PhoneNumber,ErrorMessage ="Phone number must contain only numbers")]
+        [StringLength(15,MinimumLength=4 ,ErrorMessage ="Phone number length should contain 4-15 numbers")]
+        [Phone(ErrorMessage = "The phone number field does not contain a valid phone number")]
+        [PhoneUniqueAttributes(ErrorMessage = "This phone has already used")]
         public string PhoneNumber { get; set; }
 
         [Display(Name = "User's rate")]

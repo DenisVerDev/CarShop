@@ -12,7 +12,22 @@ namespace CarShop.Controllers
         // GET: Account
         public ActionResult Index()
         {
-            return View();
+            Account account = null;
+            try
+            {
+                int id = (int)Session["AccountId"];
+                using(CarShopDb db = new CarShopDb())
+                {
+                    account = db.Accounts.Where(x => x.Id == id).FirstOrDefault();
+                    if(account == null) return View("~/Views/Shared/Error.cshtml"); //TODO make error page
+                }
+            }
+            catch (Exception ex)
+            {
+                return View("~/Views/Shared/Error.cshtml"); //TODO make error page
+            }
+
+            return View(account);
         }
 
         public ActionResult Registration()
@@ -24,11 +39,31 @@ namespace CarShop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Registration(Account acc)
         {
+            if(acc == null)
+            {
+                return HttpNotFound();
+            }
+
             if (ModelState.IsValid)
             {
-                return Content("s");
+                acc.LastOnline = DateTime.Now;
+                try
+                {
+                    using (CarShopDb db = new CarShopDb())
+                    {  
+                        db.Accounts.Add(acc);
+                        db.SaveChanges();
+                    }
+                    Session.Add("AccountId", acc.Id);
+                    return RedirectToAction("Index","Account");
+                }
+                catch (Exception ex)
+                {
+                    return View("~/Views/Shared/Error.cshtml"); //TODO make error page
+                }
             }
             return View(acc);
         }
+
     }
 }

@@ -87,3 +87,6 @@ C:\Users\admin\Desktop\Programming\projects in C#\ASP.NET\CarShop\obj\Debug\CarS
 C:\Users\admin\Desktop\Programming\projects in C#\ASP.NET\CarShop\obj\Debug\CarShop.csproj.CopyComplete
 C:\Users\admin\Desktop\Programming\projects in C#\ASP.NET\CarShop\obj\Debug\CarShop.dll
 C:\Users\admin\Desktop\Programming\projects in C#\ASP.NET\CarShop\obj\Debug\CarShop.pdb
+C:\Users\admin\Desktop\Programming\projects in C#\ASP.NET\CarShop\obj\Debug\CarShop.Migrations.InitialCreate.resources
+C:\Users\admin\Desktop\Programming\projects in C#\ASP.NET\CarShop\obj\Debug\CarShop.csproj.GenerateResource.cache
+C:\Users\admin\Desktop\Programming\projects in C#\ASP.NET\CarShop\obj\Debug\CarShop.Migrations.ModelChanged.resources

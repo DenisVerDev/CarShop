@@ -17,6 +17,7 @@ namespace CarShop
             bundles.Add(new ScriptBundle("~/bundles/layout").Include(
                         "~/Scripts/layout.js"));
 
+
             // Используйте версию Modernizr для разработчиков, чтобы учиться работать. Когда вы будете готовы перейти к работе,
             // готово к выпуску, используйте средство сборки по адресу https://modernizr.com, чтобы выбрать только необходимые тесты.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -28,6 +29,9 @@ namespace CarShop
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/layout.css"));
+
+            bundles.Add(new StyleBundle("~/Content/reg").Include(
+                      "~/Content/reg.css"));
         }
     }
 }

@@ -1,0 +1,21 @@
+﻿.regform{
+    margin-top:20px;
+}
+
+.regheader {
+    color: white;
+    text-align: center;
+    border-bottom: solid;
+    border-color: black;
+    border-radius: 5px;
+    background-color: #464646;
+}
+
+.regbody{
+    border:solid;
+    border-color:#464646;
+    border-top:unset;
+    border-radius:5px;
+    border-width:2px;
+    padding:10px;
+}
