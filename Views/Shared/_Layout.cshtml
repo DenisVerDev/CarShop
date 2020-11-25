@@ -26,16 +26,27 @@
                 <li class="nav-item mr-1"> <!--TODO: check if user is entered into his account, then hide it-->
                     @Html.ActionLink("Registration", "Registration", "Account", null, new { @class = "nav-link" })
                 </li>
-                <li class="nav-item mr-3"> <!--TODO: check if user is entered into his account, then show his acc name instead!-->
-                    <a href="@Url.Action("Login","Account")">
-                        <img class="btn-cab" src="~/Content/Images/btnlogin.svg" width="36px" height="36px" style="margin-top:2pt"/>
-                    </a>
+                <li class="nav-item mr-3">
+                    <!--TODO: check if user is entered into his account, then show his acc name instead!-->
+                    @if (Session["AccountId"] == null)
+                    {
+                        <a href="@Url.Action("Login", "Account")">
+                            <img class="btn-cab" src="~/Content/Images/btnlogin.svg" width="36px" height="36px" style="margin-top:2pt" />
+                        </a>
+                    }
+                    else
+                    {
+                       @Html.ActionLink(Session["AccountName"].ToString(), "Index", "Account", null, new { @class = "nav-link" })
+                    }
                 </li>
-                <li class="nav-item"> <!--TODO: check if user is entered into his account, then show this button!-->
-                    <a href="@Url.Action("Cart","Account")">
-                        <img class="btn-cart" src="~/Content/Images/shopping-cart.svg" width="32px" height="32px" style="margin-top:2pt;"/>
-                    </a>
-                </li>
+                @if (Session["AccountId"] != null)
+                {
+                    <li class="nav-item"> <!--TODO: check if user is entered into his account, then show this button!-->
+                        <a href="@Url.Action("Cart", "Account")">
+                            <img class="btn-cart" src="~/Content/Images/shopping-cart.svg" width="32px" height="32px" style="margin-top:2pt;"/>
+                        </a>
+                    </li>
+                }
             </ul>
         </div>
     </nav>

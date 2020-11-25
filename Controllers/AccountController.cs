@@ -55,6 +55,7 @@ namespace CarShop.Controllers
                         db.SaveChanges();
                     }
                     Session.Add("AccountId", acc.Id);
+                    Session.Add("AccountName", acc.FirstName+acc.SecondName);
                     return RedirectToAction("Index","Account");
                 }
                 catch (Exception ex)
