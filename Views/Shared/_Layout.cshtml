@@ -23,9 +23,12 @@
                 <li class="nav-item">
                     @Html.ActionLink("About us", "About", "Home", null, new { @class = "nav-link" })
                 </li>
-                <li class="nav-item mr-1"> <!--TODO: check if user is entered into his account, then hide it-->
-                    @Html.ActionLink("Registration", "Registration", "Account", null, new { @class = "nav-link" })
-                </li>
+                @if (Session["AccountId"] == null)
+                {
+                    <li class="nav-item mr-1"> <!--TODO: check if user is entered into his account, then hide it-->
+                         @Html.ActionLink("Registration", "Registration", "Account", null, new { @class = "nav-link" })
+                    </li>
+                }
                 <li class="nav-item mr-3">
                     <!--TODO: check if user is entered into his account, then show his acc name instead!-->
                     @if (Session["AccountId"] == null)

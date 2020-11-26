@@ -29,7 +29,7 @@ namespace CarShop.Models
         [Display(Name = "Email", Description = "User's email address")]
         [DataType(DataType.EmailAddress,ErrorMessage ="This should be your email address")]
         [EmailAddress(ErrorMessage = "The Email field does not contain a valid email address")]
-        [EmailUniqueAttributes(ErrorMessage ="This email has already used")]
+        [EmailUniqueAttributes(ErrorMessage ="This email has already used",IsUnique =true)]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "This field must be filled")]

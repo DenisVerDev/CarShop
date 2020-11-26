@@ -9,6 +9,7 @@ namespace CarShop.VerificationAttributes
 {
     public class EmailUniqueAttributes:ValidationAttribute
     {
+        public bool IsUnique { get; set; }
 
         public override bool IsValid(object value)
         {
@@ -17,7 +18,8 @@ namespace CarShop.VerificationAttributes
             {
                 using (CarShopDb db = new CarShopDb())
                 {
-                    return !db.Accounts.Where(x => x.Email == email).Any();
+                    if(IsUnique) return !db.Accounts.Where(x => x.Email == email).Any();
+                    else return db.Accounts.Where(x => x.Email == email).Any();
                 }
             }
             catch(Exception ex)
@@ -47,4 +49,5 @@ namespace CarShop.VerificationAttributes
             }
         }
     }
+
 }
