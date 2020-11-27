@@ -1,1 +1,4 @@
-﻿
+﻿@if (Session["AccountId"] != null)
+{
+    @Html.ActionLink("Create Announcement", "Create", "Announcement")
+}

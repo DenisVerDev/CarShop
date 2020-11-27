@@ -54,7 +54,6 @@ namespace CarShop.Models
         [Display(Name = "Announcer")]
         public Account Announcer { get; set; }
 
-        [Display(AutoGenerateField = false)]
         public string ImagePath { get; set; }
 
         public Announcement()
