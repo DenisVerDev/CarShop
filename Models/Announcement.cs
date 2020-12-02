@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarShop.VerificationAttributes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace CarShop.Models
         [Required(ErrorMessage = "This field must be filled")]
         public CarBodyStyle BodyStyle { get; set; }
 
+        [Required(ErrorMessage = "This field must be filled")]
         [Display(Name ="Car's mileage")]
         public double Mileage { get; set; }
 
@@ -33,7 +35,7 @@ namespace CarShop.Models
         public CarTransmissionType TransmissionType { get; set; }
 
         [Required(ErrorMessage = "This field must be filled")]
-        [Display(Name ="Used or new")]
+        [Display(Name ="Used?")]
         public bool CurrentState { get; set; }
 
         [Display(Name ="Car's description")]
@@ -42,7 +44,7 @@ namespace CarShop.Models
         public string Description { get; set; }
 
         [Required(ErrorMessage = "This field must be filled")]
-        [Display(Name = "Car's price")]
+        [Display(Name = "Car's price($)")]
         [DataType(DataType.Currency,ErrorMessage ="You should enter currency($)")]
         public double Price { get; set; }
 
@@ -53,8 +55,6 @@ namespace CarShop.Models
 
         [Display(Name = "Announcer")]
         public Account Announcer { get; set; }
-
-        public string ImagePath { get; set; }
 
         public Announcement()
         {

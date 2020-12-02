@@ -143,10 +143,17 @@
     <Compile Include="Migrations\202011251810435_ModelChanged.designer.cs">
       <DependentUpon>202011251810435_ModelChanged.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011301301052_model_update_2.cs" />
+    <Compile Include="Migrations\202011301301052_model_update_2.designer.cs">
+      <DependentUpon>202011301301052_model_update_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012011318430_ann_model_update.cs" />
+    <Compile Include="Migrations\202012011318430_ann_model_update.designer.cs">
+      <DependentUpon>202012011318430_ann_model_update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Announcement.cs" />
-    <Compile Include="Models\AnnouncementModule.cs" />
     <Compile Include="Models\Basket.cs" />
     <Compile Include="Models\CarBodyStyle.cs" />
     <Compile Include="Models\CarBrand.cs" />
@@ -182,6 +189,7 @@
     <Content Include="Content\bootstrap-reboot.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Scripts\annscripts.js" />
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
     <Content Include="Scripts\bootstrap.js.map" />
@@ -222,6 +230,7 @@
     <Content Include="Views\Announcement\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="AnnImages\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
@@ -239,6 +248,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011251810435_ModelChanged.resx">
       <DependentUpon>202011251810435_ModelChanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011301301052_model_update_2.resx">
+      <DependentUpon>202011301301052_model_update_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012011318430_ann_model_update.resx">
+      <DependentUpon>202012011318430_ann_model_update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

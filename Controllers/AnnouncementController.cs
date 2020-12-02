@@ -1,7 +1,10 @@
 ﻿using CarShop.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -26,6 +29,10 @@ namespace CarShop.Controllers
             {
                 return View("~/Views/Shared/Error.cshtml"); //TODO make error page
             }
+
+            CultureInfo culture = new CultureInfo("en-Us");
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
             return View(a);
         }
 
@@ -52,13 +59,13 @@ namespace CarShop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(AnnouncementModule a)
+        public ActionResult Create(Announcement a, HttpPostedFileBase mainimage)
         {
             if(a == null)
             {
                 return HttpNotFound();
             }
-            if (a.Announcement.EngineCapacity != 0 && a.Announcement.GeoLocation != null && a.Announcement.Mileage != 0 && a.Announcement.Price != 0)
+            if (ModelState.IsValid)
             {
                 try
                 {
@@ -68,17 +75,23 @@ namespace CarShop.Controllers
                         Account acc = db.Accounts.Where(x => x.Id == id).FirstOrDefault();
                         if (acc != null)
                         {
-                            a.Announcement.Announcer = acc;
-                            a.Announcement.BodyStyle = db.CarBodyStyles.Where(x => x.BodyStyle == a.BodyStyle).FirstOrDefault();
-                            a.Announcement.CarBrand = db.CarBrands.Where(x => x.BrandName == a.CarBrand).FirstOrDefault();
-                            a.Announcement.CarModel = db.CarModels.Where(x => x.ModelName == a.CarModel).FirstOrDefault();
-                            a.Announcement.EngineType = db.CarEngineTypes.Where(x => x.EngineType == a.EngineType).FirstOrDefault();
-                            a.Announcement.TransmissionType = db.CarTransmissionTypes.Where(x => x.TransmissionType == a.TransmissionType).FirstOrDefault();
-                            if (a.Announcement.CarBrand != null && a.Announcement.CarModel != null && a.Announcement.BodyStyle != null && a.Announcement.EngineType != null)
+                            a.Announcer = acc;
+                            a.BodyStyle = db.CarBodyStyles.Where(x => x.BodyStyle == a.BodyStyle.BodyStyle).FirstOrDefault();
+                            a.CarBrand = db.CarBrands.Where(x => x.BrandName == a.CarBrand.BrandName).FirstOrDefault();
+                            a.CarModel = db.CarModels.Where(x => x.ModelName == a.CarModel.ModelName).FirstOrDefault();
+                            a.EngineType = db.CarEngineTypes.Where(x => x.EngineType == a.EngineType.EngineType).FirstOrDefault();
+                            a.TransmissionType = db.CarTransmissionTypes.Where(x => x.TransmissionType == a.TransmissionType.TransmissionType).FirstOrDefault();
+                            if (a.CarBrand != null && a.CarModel != null && a.BodyStyle != null && a.EngineType != null)
                             {
-                                db.Announcements.Add(a.Announcement);
+                                db.Announcements.Add(a);
                                 db.SaveChanges();
-                                return RedirectToAction("Index", "Announcement", new { id = a.Announcement.Id });
+                                if (mainimage != null)
+                                {
+                                    string path = Server.MapPath("~/AnnImages/" + a.Id);
+                                    if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+                                    mainimage.SaveAs(Server.MapPath(String.Format("~/AnnImages/{0}/{1}", a.Id, mainimage.FileName)));
+                                }
+                                return RedirectToAction("Index", "Announcement", new { id = a.Id });
                             }
                             else return View("~/Views/Shared/Error.cshtml"); //TODO make error page
                         }
@@ -93,6 +106,25 @@ namespace CarShop.Controllers
             }
             InitView();
             return View(a);
+        }
+
+        [HttpGet]
+        public JsonResult GetModels(string brandname)
+        {
+            if(brandname == null) return Json("error", JsonRequestBehavior.AllowGet);
+            
+            try
+            {
+                using(CarShopDb db = new CarShopDb())
+                {
+                    var models = db.CarModels.Where(x => x.CarBrand.BrandName == brandname).ToArray();
+                    return Json(models, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch(Exception ex)
+            {
+                return Json("error", JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

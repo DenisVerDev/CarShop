@@ -12,7 +12,7 @@ namespace CarShop.Models
         public int Id { get; private set; }
 
         [Display(Name ="Car brand")]
-        public string BrandName { get; private set; }
+        public string BrandName { get; set; }
 
         public CarBrand()
         {
