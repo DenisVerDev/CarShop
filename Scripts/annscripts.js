@@ -8,7 +8,7 @@
             contentType: "application/json",
             data: { brandname: brand },
             dataType:"json",
-            url: "GetModels",
+            url: "../Home/GetModels",
             type: "GET",
             success: function (response) {
                 $("#carmodels").children().remove();

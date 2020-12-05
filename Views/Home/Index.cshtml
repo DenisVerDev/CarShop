@@ -1,4 +1,68 @@
-﻿@if (Session["AccountId"] != null)
+﻿@model CarShop.Models.FilterModule
+
+@if (Session["AccountId"] != null)
 {
     @Html.ActionLink("Create Announcement", "Create", "Announcement")
 }
+
+<div class="row justify-content-center" style="margin-top:20px; text-align:center">
+    <div class="col-md-4 col-lg-4 col-sm-12" style="text-align:left">
+        @Scripts.Render("~/bundles/ann")
+        @Scripts.Render("~/bundles/mp")
+        @Scripts.Render("~/bundles/jqui")
+        @Styles.Render("~/Content/jqui")
+        <div class="filter">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <h4>Filters</h4>
+            <form id="filterform" class="form-horizontal">
+                <button id="btnfilter" class="btn-primary form-control">Apply filters</button>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CarBrand.BrandName, htmlAttributes: new { @class = "control-label col-md-2", @style = "display:inline;" })
+                    @Html.DropDownListFor(model => model.CarBrand.BrandName, ViewBag.CarBrands as SelectList, new { @id = "carbrands", @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CarModel.ModelName, htmlAttributes: new { @class = "control-label col-md-2", @style = "display:inline;" })
+                    @Html.DropDownListFor(model => model.CarModel.ModelName, ViewBag.CarModels as SelectList, new { @id = "carmodels", @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.BodyStyle.BodyStyle, htmlAttributes: new { @class = "control-label col-md-2", @style = "display:inline;" })
+                    @Html.DropDownListFor(model => model.BodyStyle.BodyStyle, ViewBag.CarBodyStyles as SelectList, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.EngineType.EngineType, htmlAttributes: new { @class = "control-label col-md-2", @style = "display:inline;" })
+                    @Html.DropDownListFor(model => model.EngineType.EngineType, ViewBag.CarEgineTypes as SelectList, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.EngineType.EngineType, htmlAttributes: new { @class = "control-label col-md-2", @style = "display:inline;" })
+                    @Html.DropDownListFor(model => model.EngineType.EngineType, ViewBag.CarEgineTypes as SelectList, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TransmissionType.TransmissionType, htmlAttributes: new { @class = "control-label col-md-2", @style = "display:inline;" })
+                    @Html.DropDownListFor(model => model.TransmissionType.TransmissionType, ViewBag.CarTransmissionTypes as SelectList, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CurrentState, htmlAttributes: new { @class = "control-label col-md-2", @style = "display:inline;" })
+                    @Html.CheckBoxFor(model => model.CurrentState, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.MinPrice, htmlAttributes: new { @id = "lprice", @class = "control-label col-md-2", @style = "display:inline;" })
+                    <div id="carprice" class="form-control"></div>
+                    <input type="hidden" name="MinPrice" id="MinPrice" />
+                    <input type="hidden" name="MaxPrice" id="MaxPrice" />
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-6 col-sm-12" style="text-align:left">
+        s
+    </div>
+</div>
